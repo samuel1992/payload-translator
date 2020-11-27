@@ -1,0 +1,51 @@
+# Ctags
+tags
+
+# Distribution / packaging
+.Python
+.aws_secrets
+.env
+.idea
+.vscode/
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+*.pem
+*.pyc
+bastion_rsa
+__pycache__
+vendored/
+
+# Environment directories
+venv
+.env
+.venv
+
+# Serverless directories
+.serverless
+
+# Tests files
+*.pytest_cache/
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
