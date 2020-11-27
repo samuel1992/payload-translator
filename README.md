@@ -7,7 +7,7 @@ from A, sometimes divide or multiply. Thats the main ideia here. Get the values 
 Example:
 
 *ORIGINAL PAYLOAD*
-```json
+```python
 {
   'name': 'Samuel',
   'last_name': 'Dantas',
@@ -36,7 +36,7 @@ Example:
 ```
 
 *SHOULD BE TRANSLATED TO*
-```json
+```python
 {
   'client_name': 'Samuel Dantas',  # should join name and last name
   'client_age': 28,  # direct field
