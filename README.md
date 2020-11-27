@@ -1,7 +1,7 @@
 # Payload Translator
 
 What is that?
-First I need to explain my necessity. I needed to translate a payload for A for a format B, considering that the payload A has every data B needs.
+First I need to explain my necessity. I needed to translate a payload A for a format B, considering that the payload A has every data B needs.
 Some things to consider. Sometimes for satisfy a payload B field we need to join one or more fields from A, sometimes we need to sum some values from multiples fields
 from A, sometimes divide or multiply. Thats the main ideia here. Get the values from a payload to fullfill another one that has a different structure.
 Example:
