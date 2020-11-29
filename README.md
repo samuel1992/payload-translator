@@ -78,7 +78,7 @@ ORIGINAL_PAYLOAD = {
 }
 
 PAYLOAD_MAPPING = {
-    'client_name': Join(GetField('name'), GetField('last_name'), delimiter=' '),
+    'client_name': Join((GetField('name'), GetField('last_name')), delimiter=' '),
     'client_age': GetField('age'),
     'client_street': GetSubField(('address', 'street')),
     'client_number': GetSubField(('address', 'number')),
