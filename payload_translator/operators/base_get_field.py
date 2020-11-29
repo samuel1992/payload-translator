@@ -1,6 +1,6 @@
 from .exceptions import InvalidFieldException
 
-ERROR_INVALID_FIELD = 'The field passed does not exist in the de payload'
+ERROR_INVALID_FIELD = ': The field does not exist in the de payload'
 
 
 class BaseGetField:
@@ -8,4 +8,4 @@ class BaseGetField:
         try:
             return payload[key]
         except KeyError:
-            raise InvalidFieldException(ERROR_INVALID_FIELD)
+            raise InvalidFieldException(key + ERROR_INVALID_FIELD)
