@@ -1,5 +1,4 @@
-from operators import GetField, GetSubField
-
+from .operators import GetField, GetSubField
 from .payload_translator import PayloadTranslator
 
 
