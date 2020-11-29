@@ -1,4 +1,4 @@
-BASE_PAYLOAD = {
+ORIGINAL_PAYLOAD = {
     'name': 'Samuel',
     'last_name': 'Dantas',
     'age': 28,
@@ -25,18 +25,18 @@ BASE_PAYLOAD = {
 }
 
 # Example of usage
-FUTURE_PAYLOAD = {
+PAYLOAD_MAPPING = {
     'client_name': Join(GetField('name'), GetField('last_name'), delimiter=' '),
     'client_age': GetField('age'),
-    'client_street': GetSubField(['address']['street']),
-    'client_number': GetSubField(['address']['number']),
-    'client_city': GetSubField(['address']['city']),
-    'client_state':  GetSubField(['address']['state']),
+    'client_street': GetSubField(('address', 'street')),
+    'client_number': GetSubField(('address', 'number')),
+    'client_city': GetSubField(('address', 'city')),
+    'client_state':  GetSubField(('address', 'state')),
     'client_laptop': GetFromListField(position=0),
     'client_car':  GetFromListField(condition=lambda x: x['name'] == 'car')
 }
 
-PayloadTranslator(from=BASE_PAYLOAD, to=FUTURE_PAYLOAD).translate()
+PayloadTranslator(_from=ORIGINAL_PAYLOAD, _to=PAYLOAD_MAPPING).translate()
 # should return
 {
     'client_name': 'Samuel Dantas',  # should join name and last name
@@ -50,7 +50,7 @@ PayloadTranslator(from=BASE_PAYLOAD, to=FUTURE_PAYLOAD).translate()
 }
 
 # possible methods
-PayloadTranslator(from=BASE_PAYLOAD, to=FUTURE_PAYLOAD).errors() # return a list of errors
+PayloadTranslator(_from=ORIGINAL_PAYLOAD, to=PAYLOAD_MAPPING).errors()
 
 
 # possible exceptions by methods
