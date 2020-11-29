@@ -8,3 +8,5 @@ class PayloadTranslator:
 
         for key, operator in self.mapping.items():
             translated_payload[key] = operator.call(self.payload)
+
+        return translated_payload
