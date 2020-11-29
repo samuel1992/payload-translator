@@ -3,7 +3,7 @@
 What is that?
 First I need to explain my necessity. I needed to translate a payload A for a format B, considering that the payload A has every data B needs.
 Some things to consider: sometimes for satisfy a payload B field we need to join one or more fields from A, sometimes we need to sum some values from multiples fields
-from A, sometimes divide or multiply. Thats the main ideia here. Get the values from a payload to fullfill another one that has a different structure.
+from A, sometimes divide or multiply. Thats the main ideia here. Get the values from a payload to fill another one that is in a different structure.
 Example:
 
 *ORIGINAL PAYLOAD*
@@ -49,7 +49,7 @@ Example:
 }
 ```
 
-# Examples
+# Usage Examples
 ```python
 ORIGINAL_PAYLOAD = {
     'name': 'Samuel',
