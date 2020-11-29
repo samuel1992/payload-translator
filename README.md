@@ -49,6 +49,58 @@ Example:
 }
 ```
 
+# Examples
+```python
+ORIGINAL_PAYLOAD = {
+    'name': 'Samuel',
+    'last_name': 'Dantas',
+    'age': 28,
+    'address': {
+        'street': 'R. Some Fake Street',
+        'number': 123,
+        'city': 'Osasco',
+        'state': 'SP'
+    },
+    'items': [
+        {
+            'name': 'macbook',
+            'quantity': 1
+        },
+        {
+            'name': 'ford fiesta',
+            'quantity': 1
+        },
+        {
+            'name': 'shoes',
+            'quantity': 10
+        }
+    ]
+}
+
+PAYLOAD_MAPPING = {
+    'client_name': Join(GetField('name'), GetField('last_name'), delimiter=' '),
+    'client_age': GetField('age'),
+    'client_street': GetSubField(('address', 'street')),
+    'client_number': GetSubField(('address', 'number')),
+    'client_city': GetSubField(('address', 'city')),
+    'client_state':  GetSubField(('address', 'state')),
+    'client_laptop': GetFromListField(position=0),
+    'client_car':  GetFromListField(condition=lambda x: x['name'] == 'car')
+}
+
+PayloadTranslator(_from=ORIGINAL_PAYLOAD, _to=PAYLOAD_MAPPING).translate()
+# {
+#     'client_name': 'Samuel Dantas',
+#     'client_age': 28,
+#     'client_street':  'R. Some Fake Street',
+#     'client_number': 123,
+#     'client_city': 'Osasco',
+#     'client_state': 'SP',
+#     'client_laptop': 'macbook',
+#     'client_car': 'ford fiesta',
+# }
+```
+
 # What it must do
 - Translate from a field to another
 - Raise errors for fields which doesn't match
