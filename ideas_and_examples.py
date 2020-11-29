@@ -28,10 +28,10 @@ ORIGINAL_PAYLOAD = {
 PAYLOAD_MAPPING = {
     'client_name': Join(GetField('name'), GetField('last_name'), delimiter=' '),
     'client_age': GetField('age'),
-    'client_street': GetSubField(['address']['street']),
-    'client_number': GetSubField(['address']['number']),
-    'client_city': GetSubField(['address']['city']),
-    'client_state':  GetSubField(['address']['state']),
+    'client_street': GetSubField(('address', 'street')),
+    'client_number': GetSubField(('address', 'number')),
+    'client_city': GetSubField(('address', 'city')),
+    'client_state':  GetSubField(('address', 'state')),
     'client_laptop': GetFromListField(position=0),
     'client_car':  GetFromListField(condition=lambda x: x['name'] == 'car')
 }
@@ -50,7 +50,7 @@ PayloadTranslator(_from=ORIGINAL_PAYLOAD, _to=PAYLOAD_MAPPING).translate()
 }
 
 # possible methods
-PayloadTranslator(_from=ORIGINAL_PAYLOAD, _to=PAYLOAD_MAPPING).errors()
+PayloadTranslator(_from=ORIGINAL_PAYLOAD, to=PAYLOAD_MAPPING).errors()
 
 
 # possible exceptions by methods

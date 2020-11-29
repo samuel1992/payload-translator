@@ -13,7 +13,7 @@
 }
 ```
 
-[] - Get a value from a sub field (a field within a dict):
+[X] - Get a value from a sub field (a field within a dict):
 *Ex:*
 ```python
 # from
