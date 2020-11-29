@@ -1,0 +1,3 @@
+[flake8]
+exclude = .git,__pycache__,build,dist,__init__.py,fixtures,setup.py,*.txt,*.env,*.md,*.sh
+max-complexity = 10

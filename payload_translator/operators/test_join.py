@@ -24,4 +24,3 @@ def test_join_fields_values():
                   GetSubField(('birthday', 'day'))).call(payload)
 
     assert result == f'{name} {last_name} {month} {day}'
-
