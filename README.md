@@ -105,7 +105,3 @@ PayloadTranslator(_from=ORIGINAL_PAYLOAD, _to=PAYLOAD_MAPPING).translate()
 - Mathematical operators: sum, sub, divide, multiply
 - Custom operator. The same behaviour of GetField but parsing with a custom function
 - Validators by type and custom functions
-
-# What it must do
-- Translate from a field to another
-- Raise errors for fields which doesn't match
