@@ -1,5 +1,3 @@
-from .get_field import GetField
-
-from .get_sub_field import GetSubField
+from .get_from import GetFrom
 
 from .join import Join
