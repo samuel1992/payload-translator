@@ -1,7 +1,30 @@
 import pytest
 
-from .get_sub_field import GetSubField
 from .exceptions import InvalidFieldException
+from .get_from import GetFrom
+
+
+def test_get_field_return_expected_value():
+    field = 'nice_phrase'
+    value = 'something beautiful'
+    payload = {
+        field: value
+    }
+
+    result = GetFrom(field).call(payload)
+
+    assert result == value
+
+
+def test_get_field_raises_an_invalid_field():
+    field = 'nice_phrase'
+    value = 'something beautiful'
+    payload = {
+        field: value
+    }
+
+    with pytest.raises(InvalidFieldException):
+        assert GetFrom('invalid_field').call(payload)
 
 
 def test_get_sub_field_return_expected_value():
@@ -16,7 +39,7 @@ def test_get_sub_field_return_expected_value():
 
     path = ('first', 'second', 'third')
 
-    result = GetSubField(path).call(payload)
+    result = GetFrom(path).call(payload)
 
     assert result == value
 
@@ -34,7 +57,7 @@ def test_get_sub_field_raises_an_invalid_field():
     path = ('first', 'second', 'invalid')
 
     with pytest.raises(InvalidFieldException):
-        assert GetSubField(path).call(payload)
+        assert GetFrom(path).call(payload)
 
 
 def test_get_sub_field_with_a_more_level_than_exists():
@@ -49,4 +72,4 @@ def test_get_sub_field_with_a_more_level_than_exists():
 
     path = ('first', 'second', 'third', 'forth')
 
-    assert GetSubField(path).call(payload) == value
+    assert GetFrom(path).call(payload) == value
