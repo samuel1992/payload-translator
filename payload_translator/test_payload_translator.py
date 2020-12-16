@@ -1,4 +1,4 @@
-from .operators import GetField, GetSubField, Join
+from .operators import GetFrom, Join
 from .payload_translator import PayloadTranslator
 
 
@@ -24,11 +24,11 @@ def test_a_dict_translate():
     }
 
     favorite_movies = {
-        'my_favorite_movie': GetField('war_movie'),
-        'my_second_favorite_movie': GetField('comedy_movie'),
-        'my_third_favorite_movie': GetSubField(('dramas', 'romantic_drama')),
-        'my_movies_of_velocity': Join(GetField('car_movie'),
-                                      GetField('motorcycle_movie'),
+        'my_favorite_movie': GetFrom('war_movie'),
+        'my_second_favorite_movie': GetFrom('comedy_movie'),
+        'my_third_favorite_movie': GetFrom(('dramas', 'romantic_drama')),
+        'my_movies_of_velocity': Join(GetFrom('car_movie'),
+                                      GetFrom('motorcycle_movie'),
                                       delimiter=', ')
     }
 
