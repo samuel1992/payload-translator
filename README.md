@@ -78,12 +78,12 @@ ORIGINAL_PAYLOAD = {
 }
 
 PAYLOAD_MAPPING = {
-    'client_name': Join(GetField('name'), GetField('last_name'), delimiter=' '),
-    'client_age': GetField('age'),
-    'client_street': GetSubField(('address', 'street')),
-    'client_number': GetSubField(('address', 'number')),
-    'client_city': GetSubField(('address', 'city')),
-    'client_state':  GetSubField(('address', 'state')),
+    'client_name': Join(GetFrom('name'), GetFrom('last_name'), delimiter=' '),
+    'client_age': GetFrom('age'),
+    'client_street': GetFrom(('address', 'street')),
+    'client_number': GetFrom(('address', 'number')),
+    'client_city': GetFrom(('address', 'city')),
+    'client_state':  GetFrom(('address', 'state')),
     'client_laptop': GetFromListField(position=0),
     'client_car':  GetFromListField(condition=lambda x: x['name'] == 'car')
 }
@@ -103,5 +103,5 @@ PayloadTranslator(_from=ORIGINAL_PAYLOAD, _to=PAYLOAD_MAPPING).translate()
 
 # Next features
 - Mathematical operators: sum, sub, divide, multiply
-- Custom operator. The same behaviour of GetField but parsing with a custom function
+- Custom operator. The same behaviour of GetFrom but parsing with a custom function
 - Validators by type and custom functions
