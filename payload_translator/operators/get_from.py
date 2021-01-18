@@ -4,6 +4,11 @@ ERROR_INVALID_FIELD = ': The field does not exist in the de payload'
 
 
 class GetFrom:
+    """Operator to get values from another dictonary directly or in a
+    sublevel when it is a nested field.
+    :param: field: a string for the field that you want the value or a tuple
+    of string representing the path to find a value in a nested field.
+    """
     def __init__(self, field):
         self.field = field
 
@@ -24,7 +29,7 @@ class GetFrom:
         return payload
 
     def call(self, payload):
-        if isinstance(self.field, (list, tuple)):
+        if isinstance(self.field, tuple):
             return self._get_from_nested_field(payload)
 
         return self._get(payload, self.field)
