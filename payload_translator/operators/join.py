@@ -1,4 +1,7 @@
-class Join:
+from .operator import Operator
+
+
+class Join(Operator):
     """Operator to join values got from another operators. It join them into a
     string with the values obtained.
     :param: operators: the operators object to get the values

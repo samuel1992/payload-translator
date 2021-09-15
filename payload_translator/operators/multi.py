@@ -7,13 +7,13 @@ from .exceptions import InvalidNumberException
 ERROR_INVALID_NUMBER = ': The value is not a valid number'
 
 
-class Sub(Operator):
-    """Operator to sub values got from another dictionary field. It uses the
-    `GetFrom` operator to do it.
-    :param: fields: the fields to be sub. In case of a value from a nested
-    field you must pass a tuple indicating the path for the value (see the
-    GetFrom operator). All of it must be a number. In case of a string it will
-    try to convert to a float.
+class Multi(Operator):
+    """Operator to multiply values got from another dictionary field.
+    It uses the `GetFrom` operator to do it.
+    :param: fields: the fields to be multiplied. In case of a value from a
+    nested field you must pass a tuple indicating the path for the value
+    (see the GetFrom operator). All of it must be a number.
+    In case of a string it will try to convert to a float.
     Ex:
     ```
         payloat to get values from:
@@ -26,7 +26,7 @@ class Sub(Operator):
             }
         }
 
-        Sum('field_a', ('field_b', 'field_c', 'field_d').call(payload)
+        Multi('field_a', ('field_b', 'field_c', 'field_d').call(payload)
     ```
     """
     def __init__(self, *fields):
@@ -46,6 +46,6 @@ class Sub(Operator):
             except ValueError:
                 raise InvalidNumberException(value + ERROR_INVALID_NUMBER)
 
-            result -= value
+            result *= value
 
         return result

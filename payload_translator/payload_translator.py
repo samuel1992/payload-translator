@@ -1,12 +1,28 @@
+from .operators import Operator
+
+
 class PayloadTranslator:
     def __init__(self, _from, _to):
         self.payload = _from
         self.mapping = _to
 
     def translate(self):
-        translated_payload = {}
+        return self._resolve_opertors(self.mapping)
 
-        for key, operator in self.mapping.items():
-            translated_payload[key] = operator.call(self.payload)
+    def _resolve_opertors(self, data):
+        if self._is_a_operator(data):
+            data = data.call(self.payload)
+        else:
+            for key, value in data.items():
+                if self._is_a_operator(value):
+                    data[key] = value.call(self.payload)
+                elif isinstance(value, dict):
+                    self._resolve_opertors(value)
+                elif isinstance(value, list):
+                    for i, v in enumerate(value):
+                        value[i] = self._resolve_opertors(v)
 
-        return translated_payload
+        return data
+
+    def _is_a_operator(self, value):
+        return issubclass(value.__class__, Operator)
