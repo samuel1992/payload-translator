@@ -7,9 +7,9 @@ class PayloadTranslator:
         self.mapping = _to
 
     def translate(self):
-        return self._resolve_opertors(self.mapping)
+        return self._resolve_operators(self.mapping)
 
-    def _resolve_opertors(self, data):
+    def _resolve_operators(self, data):
         if self._is_a_operator(data):
             data = data.call(self.payload)
         else:
@@ -17,10 +17,10 @@ class PayloadTranslator:
                 if self._is_a_operator(value):
                     data[key] = value.call(self.payload)
                 elif isinstance(value, dict):
-                    self._resolve_opertors(value)
+                    self._resolve_operators(value)
                 elif isinstance(value, list):
                     for i, v in enumerate(value):
-                        value[i] = self._resolve_opertors(v)
+                        value[i] = self._resolve_operators(v)
 
         return data
 
