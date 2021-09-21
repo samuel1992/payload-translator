@@ -1,11 +1,13 @@
 from .get_from import GetFrom
 
+from .operator import Operator
+
 from .exceptions import InvalidNumberException
 
 ERROR_INVALID_NUMBER = ': The value is not a valid number'
 
 
-class Sum:
+class Sum(Operator):
     """Operator to sum values got from another dictionary field. It uses the
     `GetFrom` operator to do it.
     :param: fields: the fields to be sum. In case of a value from a nested

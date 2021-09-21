@@ -1,9 +1,11 @@
 from .exceptions import InvalidFieldException
 
+from .operator import Operator
+
 ERROR_INVALID_FIELD = ': The field does not exist in the de payload'
 
 
-class GetFrom:
+class GetFrom(Operator):
     """Operator to get values from another dictonary directly or in a
     sublevel when it is a nested field.
     :param: field: a string for the field that you want the value or a tuple
