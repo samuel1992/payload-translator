@@ -1,5 +1,4 @@
 # Payload Translator
-:hacktoberfest
 
 What is that?
 First I need to explain my necessity. I needed to translate a payload A for a format B, considering that the payload A has every data B needs.
