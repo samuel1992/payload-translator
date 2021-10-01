@@ -1,3 +1,5 @@
+import math
+
 from .get_from import GetFrom
 
 from .operator import Operator
@@ -26,26 +28,19 @@ class Multi(Operator):
             }
         }
 
-        Multi('field_a', ('field_b', 'field_c', 'field_d').call(payload)
+        Multi('field_a', 'field_b', 'field_c', 'field_d').call(payload)
     ```
     """
     def __init__(self, *fields):
         self.fields = fields
 
     def call(self, payload):
-        first_value = GetFrom(self.fields[0]).call(payload)
-        try:
-            result = float(first_value)
-        except ValueError:
-            raise InvalidNumberException(first_value + ERROR_INVALID_NUMBER)
-
-        for field in self.fields[1::]:
-            value = GetFrom(field).call(payload)
+        numbers = []
+        for field in self.fields:
+            number = GetFrom(field).call(payload)
             try:
-                value = float(value)
+                numbers.append(float(number))
             except ValueError:
-                raise InvalidNumberException(value + ERROR_INVALID_NUMBER)
+                raise InvalidNumberException(field + ERROR_INVALID_NUMBER)
 
-            result *= value
-
-        return result
+        return math.prod(numbers)
