@@ -59,8 +59,8 @@ def test_a_dict_translate():
         'my_favorite_movie': GetFrom('war_movie'),
         'my_second_favorite_movie': GetFrom('comedy_movie'),
         'my_third_favorite_movie': GetFrom(('dramas', 'romantic_drama')),
-        'my_movies_of_velocity': Join(GetFrom('car_movie'),
-                                      GetFrom('motorcycle_movie'),
+        'my_movies_of_velocity': Join('car_movie',
+                                      'motorcycle_movie',
                                       delimiter=', ')
     }
 

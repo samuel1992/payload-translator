@@ -1,5 +1,7 @@
 from .operator import Operator
 
+from .get_from import GetFrom
+
 
 class Join(Operator):
     """Operator to join values got from another operators. It join them into a
@@ -8,10 +10,10 @@ class Join(Operator):
     :param: delimiter: the delimiter character to put in the final string with
     the joined values
     """
-    def __init__(self, *operators, delimiter=' '):
-        self.operators = operators
+    def __init__(self, *fields, delimiter=' '):
+        self.fields = fields
         self.delimiter = delimiter
 
     def call(self, payload):
-        values = [str(operator.call(payload)) for operator in self.operators]
+        values = [str(GetFrom(field).call(payload)) for field in self.fields]
         return f'{self.delimiter}'.join(values)
