@@ -1,7 +1,5 @@
 from .join import Join
 
-from .get_from import GetFrom
-
 
 def test_join_fields_values():
     name = 'samuel'
@@ -18,9 +16,7 @@ def test_join_fields_values():
         }
     }
 
-    result = Join(GetFrom('name'),
-                  GetFrom('last_name'),
-                  GetFrom(('birthday', 'month')),
-                  GetFrom(('birthday', 'day'))).call(payload)
+    result = Join('name', 'last_name',
+                  ('birthday', 'month'), ('birthday', 'day')).call(payload)
 
     assert result == f'{name} {last_name} {month} {day}'
